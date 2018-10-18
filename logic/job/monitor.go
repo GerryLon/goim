@@ -24,7 +24,7 @@ func InitMonitor(binds []string) {
 		log.Info("start monitor listen: \"%s\"", addr)
 		go func(bind string) {
 			if err := http.ListenAndServe(bind, monitorServeMux); err != nil {
-				log.Error("http.ListenAndServe(\"%s\", pprofServeMux) error(%v)", addr, err)
+				log.Error("http.ListenAndServe(\"%s\", pprofServeMux) error(%v)", bind, err)
 				panic(err)
 			}
 		}(addr)

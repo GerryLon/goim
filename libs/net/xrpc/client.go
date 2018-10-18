@@ -91,7 +91,7 @@ func (c *Client) Ping(serviceMethod string) {
 		select {
 		case <-c.quit:
 			goto closed
-			return
+			//return // unreachable code
 		default:
 		}
 		if c.Client != nil && c.err == nil {

@@ -85,7 +85,7 @@ func TestRouterGet(t *testing.T) {
 	}
 	sort.Ints(seqs)
 	if seqs[0] != 1 || seqs[1] != 2 {
-		t.Error("reply seqs not match, %v", reply.Seqs)
+		t.Errorf("reply seqs not match, %v", reply.Seqs)
 		t.FailNow()
 	}
 	if reply.Servers[0] != 0 || reply.Servers[1] != 0 {

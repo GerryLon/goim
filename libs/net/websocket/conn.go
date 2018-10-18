@@ -164,7 +164,7 @@ func (c *Conn) ReadMessage() (op int, payload []byte, err error) {
 				err = ErrMessageClose
 				return
 			default:
-				err = fmt.Errorf("unknown control message, fin=%d, op=%d", fin, op)
+				err = fmt.Errorf("unknown control message, fin=%v, op=%d", fin, op)
 				return
 			}
 		}
@@ -174,7 +174,7 @@ func (c *Conn) ReadMessage() (op int, payload []byte, err error) {
 		}
 		n++
 	}
-	return
+	//return // unreachable code
 }
 
 // read a frame

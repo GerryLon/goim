@@ -15,6 +15,7 @@ func Init(pprofBind []string) {
 	pprofServeMux.HandleFunc("/debug/pprof/profile", pprof.Profile)
 	pprofServeMux.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
 	for _, addr := range pprofBind {
+		addr := addr
 		go func() {
 			if err := http.ListenAndServe(addr, pprofServeMux); err != nil {
 				log.Error("http.ListenAndServe(\"%s\", pprofServeMux) error(%v)", addr, err)
