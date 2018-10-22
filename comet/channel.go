@@ -6,6 +6,7 @@ import (
 )
 
 // Channel used by message pusher send msg to write goroutine.
+// Channel维护一个长连接用户，只能对应一个 Room. 推送的消息可以在 Room 内广播，也可以推送到指定的 Channel.
 type Channel struct {
 	Room     *Room
 	CliProto Ring

@@ -32,9 +32,9 @@ type pushBodyMsg struct {
 
 func init() {
 	httpTransport := &http.Transport{
-		Dial: func(netw, addr string) (net.Conn, error) {
+		Dial: func(network, addr string) (net.Conn, error) {
 			deadline := time.Now().Add(30 * time.Second)
-			c, err := net.DialTimeout(netw, addr, 20*time.Second)
+			c, err := net.DialTimeout(network, addr, 20*time.Second)
 			if err != nil {
 				return nil, err
 			}

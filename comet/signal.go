@@ -16,6 +16,8 @@ func InitSignal() {
 		s := <-c
 		log.Info("comet[%s] get a signal %s", Ver, s.String())
 		switch s {
+
+		// SIGSTOP: 不支持Windows
 		case syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGSTOP, syscall.SIGINT:
 			return
 		case syscall.SIGHUP:

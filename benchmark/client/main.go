@@ -58,11 +58,14 @@ func main() {
 	log.Global = log.NewDefaultLogger(log.DEBUG)
 	flag.Parse()
 	defer log.Close()
+
+	// start uid
 	begin, err := strconv.Atoi(os.Args[1])
 	if err != nil {
 		panic(err)
 	}
 
+	// number of clients
 	num, err := strconv.Atoi(os.Args[2])
 	if err != nil {
 		panic(err)
@@ -107,6 +110,7 @@ func startClient(key string) {
 	quit := make(chan bool, 1)
 	defer close(quit)
 
+	// os.Args[3]: server address
 	conn, err := net.Dial("tcp", os.Args[3])
 	if err != nil {
 		log.Error("net.Dial(\"%s\") error(%v)", os.Args[3], err)
@@ -179,6 +183,7 @@ func startClient(key string) {
 	}
 }
 
+// write package to wr(tcp connection)
 func tcpWriteProto(wr *bufio.Writer, proto *Proto) (err error) {
 	// write
 	if err = binary.Write(wr, binary.BigEndian, uint32(rawHeaderLen)+uint32(len(proto.Body))); err != nil {

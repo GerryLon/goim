@@ -19,6 +19,8 @@ func NewDefaultAuther() *DefaultAuther {
 
 func (a *DefaultAuther) Auth(token string) (userId int64, roomId int32) {
 	var err error
+
+	// token校验失败
 	if userId, err = strconv.ParseInt(token, 10, 64); err != nil {
 		userId = 0
 		roomId = define.NoRoom
